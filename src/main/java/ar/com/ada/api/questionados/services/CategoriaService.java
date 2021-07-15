@@ -30,4 +30,18 @@ public class CategoriaService {
 
     }
 
+    public boolean crearCategoria(Categoria categoria) {
+        if(existe(categoria.getCategoriaId())){
+            return false;
+        }
+        repo.save(categoria);
+
+        return true;
+    }
+
+    public boolean existe(Integer id) {
+        Categoria categoria = buscarCategoria(id);
+        
+        return categoria != null;
+    }
 }
