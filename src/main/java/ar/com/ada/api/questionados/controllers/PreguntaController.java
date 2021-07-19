@@ -26,10 +26,10 @@ public class PreguntaController {
 
         GenericResponse respuesta = new GenericResponse();
 
-        Pregunta pregunta = service.crearPregunta(preguntaNueva.enunciado, preguntaNueva.opciones, preguntaNueva.categoria);
+        Pregunta pregunta = service.crearPregunta(preguntaNueva.enunciado, preguntaNueva.categoriaId, preguntaNueva.opciones);
 
         respuesta.isOk = true;
-        respuesta.id = preguntaNueva.getPreguntaPorId();
+        respuesta.id = pregunta.getPreguntaId();
         respuesta.message = "LA pregunta fue creada con éxito";
 
         return ResponseEntity.ok(preguntaNueva);
@@ -43,7 +43,7 @@ public class PreguntaController {
     @GetMapping("/categorias/{id}")
     public ResponseEntity<?> getPreguntaPorId(@PathVariable Integer id){
 
-        Pregunta pregunta = service.buscarEmpleadaPorId(id);
+        Pregunta pregunta = service.buscarPreguntaPorId(id);
         
         if (pregunta == null){
             return ResponseEntity.notFound().build();

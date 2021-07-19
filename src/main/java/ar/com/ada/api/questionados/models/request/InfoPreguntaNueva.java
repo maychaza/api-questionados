@@ -9,6 +9,6 @@ public class InfoPreguntaNueva {
 
     public String enunciado;
     public List<Respuesta> opciones;
-    public Integer categoria;
+    public Integer categoriaId;
 
 }
