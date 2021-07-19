@@ -1,6 +1,8 @@
 package ar.com.ada.api.questionados.entities;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Table(name = "respuesta")
 public class Respuesta {
@@ -12,11 +14,12 @@ public class Respuesta {
 
     private String texto;
 
-    @Column(name = "es_correcta")
+    @Column(name = "es_correcta")  //si no se pone la anotacion, se crea un nombre 
     private boolean esCorrecta;
     
     @ManyToOne // muchas resp para 1 preg
     @JoinColumn(name = "pregunta_id", referencedColumnName = "pregunta_id")
+    @JsonIgnore
     private Pregunta pregunta;
 
 

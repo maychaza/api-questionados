@@ -35,12 +35,12 @@ public class PreguntaController {
         return ResponseEntity.ok(preguntaNueva);
     }
 
-    @GetMapping("/categorias")
+    @GetMapping("/preguntas")
     public ResponseEntity<List<Pregunta>> traerPreguntas(){
         return ResponseEntity.ok(service.traerPreguntas());
     }
 
-    @GetMapping("/categorias/{id}")
+    @GetMapping("/preguntas/{id}")
     public ResponseEntity<?> getPreguntaPorId(@PathVariable Integer id){
 
         Pregunta pregunta = service.buscarPreguntaPorId(id);

@@ -42,7 +42,7 @@ public class CategoriaController {
     }
 
     @GetMapping("/categorias")
-    public ResponseEntity<List<Categoria>> traerCategoria() {
+    public ResponseEntity<List<Categoria>> traerCategorias() {
         return ResponseEntity.ok(service.traerCategorias());
     }
 
