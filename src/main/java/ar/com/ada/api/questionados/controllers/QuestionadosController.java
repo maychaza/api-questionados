@@ -1,5 +1,9 @@
 package ar.com.ada.api.questionados.controllers;
 
+
+
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 import ar.com.ada.api.questionados.entities.Pregunta;
 import ar.com.ada.api.questionados.entities.Respuesta;
 import ar.com.ada.api.questionados.models.request.RespuestaAVerificar;
+import ar.com.ada.api.questionados.models.response.OpcionPregunta;
+import ar.com.ada.api.questionados.models.response.PreguntaAResolver;
 import ar.com.ada.api.questionados.models.response.RespuestaVerificada;
 import ar.com.ada.api.questionados.services.QuestionadosService;
 
@@ -22,11 +28,13 @@ public class QuestionadosController {
 
     //GET/ questionados/next
     @GetMapping("/questionados/next") //si no hay variables y es un GET, no lleva nada dentro de los parentesis.
-    public ResponseEntity<Pregunta> traerPreguntaRandom(){
+    public ResponseEntity<PreguntaAResolver> traerPreguntaRandom(){
         
-        Pregunta proximaPregunta = service.traerPreguntaRandom();
-        
-        return ResponseEntity.ok(proximaPregunta);
+        Pregunta pregunta = service.traerPreguntaRandom();
+
+        PreguntaAResolver preguntaAResolver = PreguntaAResolver.convertirDesde(pregunta);
+
+        return ResponseEntity.ok(preguntaAResolver);
 
         //return ResponseEntity.ok(service.traerPreguntaRandom());    forma sintetizada
     }
